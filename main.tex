@@ -1,0 +1,29 @@
+\documentclass{book}
+% \usepackage[T1]{fontenc}
+% \usepackage[utf8]{inputenc}
+\usepackage{import,amsmath, mathtools, enumitem, geometry, titlesec, fancyhdr, graphicx}
+\geometry{letterpaper, margin=.75in}
+\setlength\parindent{1in}
+\graphicspath{ {figures/} }
+\titlespacing*\subsubsection{0pt}{5pt}{-\parskip}
+
+\titleformat{\chapter}[hang] 
+{\normalfont\huge\bfseries}{\thechapter . }{0pt}{}
+\titlespacing*\chapter{0pt}{-20pt}{10pt}
+
+\title{EE122 Notes}
+\author{by Angela Wang}
+% \date{December 2019}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\mainmatter
+
+\chapter{Definitions}
+% \hrule \vspace{5pt}
+\import{./}{Ch2_Principles.tex}
+
+\chapter{Metrics}
+\import{./}{Ch2_Principles.tex}
+\end{document}

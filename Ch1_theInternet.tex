@@ -1,0 +1,58 @@
+\begin{document}
+The internet is made up of hosts and routers attached through links that deliver information by arranging it into packets and transmitting the packets.
+\subsubsection*{Packets}
+A string of bits arranged according to a specified format.
+\subsubsection*{Hosts}
+Source or sink devices that host applications that generate or use the information exchanged. They have a distinct location-based 32-bit IP address. \\
+ex. computers, printers, servers, webcams
+\subsubsection*{Routers}
+Receives and forwards packets between hosts and other routers.
+\subsubsection*{Links}
+Wired, wireless, or optical systems that transports bits between two routers or hosts
+\subsubsection*{IP Address}
+A unique address for every host that is a bit string of a specific format. \\
+ex. IPv4 is a 32-bit string of a format \textit{a.b.c.d} where \textit{a}, \textit{d}, \textit{c}, \textit{d} are the decimal value of the four bytes. IPv6 is newer protocol that is a 128-bit address. 
+\subsubsection*{Domain Name Service (DNS)}
+Hosts attached to the Internet have a name in addition to an IP address. DNS is a distributed directory service that translates names into IP addresses. The internet is divided into zones, each with a DNS server that maintains the addresses of hosts in each zone.
+\subsubsection*{World Wide Web (www)}
+A collection of hyperlinked resources like web pages, video streams, music files. Each resource is identified by a URL. 
+\subsubsection*{Universal Resource Locator (URL)}
+Specifies a computer and file in that computer along with the protocol that should deliver that file. \\
+ex: http://www.eecs.berkeley.edu/~wlr.html
+\subsubsection*{Hyper Text Transfer Protocol (HTTP)}
+Protocol that specifies the request/ response rules for getting a file from a server to a client. So the protocol sets up a connection between the server and client, requests a specific files, and then closes the connection when the transfer is complete. 
+
+\section{Switching}
+The section of the set of links that a packet follows from its source to destination.
+\subsubsection*{Circuit Switching}
+The set of links is selected once and the data rate required on that set of links is reserved for a duration of time. \\
+ex. telephone networks, where a set of links is chosen for a complete telephone conversation, and a data rate is required for the duration of the conversation
+\subsubsection*{Packet Switching}
+A set of links is individually chosen for each packet, which allows for flexible routing. If a link goes down or a host or router is disabled, packet switching can reroute information on an alternate path. Datagrams is a version of packet switching where each router chooses the next link for each packet. 
+\subsubsection*{Virtual Circuits}
+The set of links is selected once, but the data rate required is not reserved on the links. Data is transported using packets and sends packets of a connection on the same set of links.\\
+ex. Multi-Protocol Label Switching (MPLS) and Asynchronous Transfer Mode (ATM)
+
+\section{Routing}
+The process of selecting a path for packets to get from a source to a destination address. 
+\subsubsection*{Routing Table}
+A table of the shortest paths that a router regularly computes and updates. Specifies the next hop for each destination address. 
+\subsubsection*{Classless Interdomain Routing (CIDR)}
+These tables can be simplified by taking advantage of location-based addressing. IP addresses (\textit{a.b.c.d}) are organized similar to telephone numbers, where \textit{a} is the most general location is analogous to a phone number's country code, \textit{d} is analogous to a house number. For CIDR the longest common prefix or initial string of bits in the addresses going to the same destination will be grouped together. 
+
+\section{Transmission}
+The bits of a packet are converted into electrical or optical signals and sent by a transmitting node. These signals are then received by another node and converted back into bits
+\subsubsection*{Error Detection}
+During transmission, there may be interference to the signals, causing bits of a packet to get corrupted. Parity bits, or bits that indicate the xor of a set of the packet's bits, can be used to detect these errors. Header checksums can also be used. The transmitting and receiving node perform a calculation with the bits in a packet's header, and an error is detected if the results differ. \\
+ex. Hamming codes
+
+\section{Congestion}
+Too many packets may be forwarded to a router at the same time, causing the routers run out of memory and drop packets. 
+\subsubsection*{Automatic Retransmission Request (ARQ)}
+Guarantees that a source retransmits the packets that do not reach the destination without errors. The destination acknowledges all correct packets it receives and the source retransmits packets if it does not receive an acknowledgement (ack) from the destination within a specific amount of time. 
+\subsubsection*{Congestion Control}
+Hosts want to have the largest throughput they can have. When hosts start losing an excessive number of packets, they assume it is due to congestion and the host decreases the number of packet sent when they miss acks. The hosts increase the packet transmission rate when acks are received.
+\subsubsection*{Flow Control}
+Fast devices may send packets too rapidly to slower devices, causing the slower device to miss packets. To prevent this the receiving devices send the amount of free buffer space it has in each ack, and the source stops transmitting when the number of un-acked bits sent crosses the amount of free space. 
+
+\end{document}
