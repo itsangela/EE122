@@ -1,4 +1,3 @@
-\begin{document}
 The internet is made up of hosts and routers attached through links that deliver information by arranging it into packets and transmitting the packets.
 \subsubsection*{Packets}
 A string of bits arranged according to a specified format.
@@ -54,5 +53,3 @@ Guarantees that a source retransmits the packets that do not reach the destinati
 Hosts want to have the largest throughput they can have. When hosts start losing an excessive number of packets, they assume it is due to congestion and the host decreases the number of packet sent when they miss acks. The hosts increase the packet transmission rate when acks are received.
 \subsubsection*{Flow Control}
 Fast devices may send packets too rapidly to slower devices, causing the slower device to miss packets. To prevent this the receiving devices send the amount of free buffer space it has in each ack, and the source stops transmitting when the number of un-acked bits sent crosses the amount of free space. 
-
-\end{document}
