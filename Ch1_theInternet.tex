@@ -5,7 +5,7 @@ A string of bits arranged according to a specified format.
 Source or sink devices that host applications that generate or use the information exchanged. They have a distinct location-based 32-bit IP address. \\
 ex. computers, printers, servers, webcams
 \subsubsection*{Routers}
-Receives and forwards packets between hosts and other routers.
+Receives and forwards packets between hosts and other routers. 
 \subsubsection*{Links}
 Wired, wireless, or optical systems that transports bits between two routers or hosts
 \subsubsection*{IP Address}
@@ -35,9 +35,10 @@ ex. Multi-Protocol Label Switching (MPLS) and Asynchronous Transfer Mode (ATM)
 \section{Routing}
 The process of selecting a path for packets to get from a source to a destination address. 
 \subsubsection*{Routing Table}
-A table of the shortest paths that a router regularly computes and updates. Specifies the next hop for each destination address. 
+A table of the shortest paths that a router regularly computes and updates. Specifies the next hop for each destination address. If there are $N$ devices and each device has its own entry then the routing table will be $N^2$ in size. To reduce the size of the tables, we can split the devices into groups.
 \subsubsection*{Classless Interdomain Routing (CIDR)}
-These tables can be simplified by taking advantage of location-based addressing. IP addresses (\textit{a.b.c.d}) are organized similar to telephone numbers, where \textit{a} is the most general location is analogous to a phone number's country code, \textit{d} is analogous to a house number. For CIDR the longest common prefix or initial string of bits in the addresses going to the same destination will be grouped together. 
+One was we can group devices is by taking advantage of location-based addressing. IP addresses (\textit{a.b.c.d}) are organized similar to telephone numbers, where \textit{a} is the most general location is analogous to a phone number's country code, \textit{d} is analogous to a house number. For CIDR the longest common prefix or initial string of bits in the addresses going to the same destination will be grouped together. \\
+ex. If there are $N$ groups of devices with $M$ devices each. Lets say device $1.2$ wants to send something to device $N.M$. Firth the packet will go to router 1, then router 1's routing table has the next hop to router $N$ as router $5$. Then, similarly at router $5$ there is the next hop towards router $N$. After the packet reaches router $N$, the packet will then be forwarded to device $N.M$. So each routing table will be of size $N-1$+$M$.  
 
 \section{Transmission}
 The bits of a packet are converted into electrical or optical signals and sent by a transmitting node. These signals are then received by another node and converted back into bits

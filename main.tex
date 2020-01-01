@@ -11,19 +11,31 @@
 {\normalfont\huge\bfseries}{\thechapter . }{0pt}{}
 \titlespacing*\chapter{0pt}{-20pt}{10pt}
 
-\title{EE122 Notes}
+\title{\textbf{EE122 Notes}}
 \author{by Angela Wang}
-% \date{December 2019}
+\date{}
+
+\pagestyle{fancy}
+\rfoot{Angela Wang}
+\lfoot{\leftmark}
+\rhead{\thepage}
+\lhead{}
+\cfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{1pt}
 
 \begin{document}
 \maketitle
 \tableofcontents
 \mainmatter
 
-\chapter{Definitions}
-% \hrule \vspace{5pt}
+\chapter{Internet Basics}
 \import{./}{Ch1_theInternet.tex}
 
-\chapter{Metrics}
+\chapter{More Internet Basics}
 \import{./}{Ch2_Principles.tex}
+
+\chapter{Ethernet}
+\import{./}{Ch3_Ethernet.tex}
+
 \end{document}

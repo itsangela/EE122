@@ -41,7 +41,7 @@ $$Delay_{A\_to\_C} = Q/R + 2P/R + T_{processes} + 2T_{propagation}$$
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{fig2_2_delay}
+    \includegraphics[height=0.25\textwidth]{fig2_2_delay}
     \caption{Delay from Node A to Node B to Node C}
     \label{fig:Delay}
 \end{figure}
@@ -57,20 +57,20 @@ Data rate for a particular application, bits per second. Not the same as link ra
 ex. A source $S$ sending a packet to a destination $D$. Lets say there is a window size of three packets, so the sender can only sent three packets betfor waiting for an acknowledgement. The throughput of this application is less than the link rate, because of the time that the sender has to wair for an acknowledgement. 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{fig2_3_tp_window}
+    \includegraphics[height=0.25\textwidth]{fig2_3_tp_window}
     \caption{Throughput limited by window size}
     \label{fig:tp_window}
 \end{figure}
 \\ ex. If multiple devices $A$, $C$, and $D$ are linked to a router $B$. If $A$ wants to send information to $C$ and $D$, the throughput of the connection from $A$ to $C$ is $R/2$ and from $A$ to $D$ is $R/2$, because the maximum rate from $A$ to $B$ is only $R$. 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{fig2_3_tp_bottleneck}
+    \includegraphics[height=0.25\textwidth]{fig2_3_tp_bottleneck}
     \caption{Throughput limited by bottleneck link}
     \label{fig:tp_bottleneck}
 \end{figure}
 
 \subsubsection*{Delay Jitter}
-The difference between the longest and shorted delivery time among the packets of that connection. Successive packets sent may not face the same delay accross a network due to congestion or other issues. \\
+The difference between the longest and shorted delivery time among the packets of that connection. Successive packets sent may not face the same delay across a network due to congestion or other issues. \\
 ex. For streaming applications, a constant stream of packets in necessary. Lets say that the delay jitter $J$ is known. The destination can store the packets that arrive in a buffer. Then, the first packet should be stored for $J$ seconds before playing it back, and the subsequent packets should be able to be streamed from the buffer.
 \subsubsection*{M/M/1 Queue}
 Memoryless arrival, Memoryless service, 1 server model that allows us to estimate the delay and backlog at transmission lines. Let us discretize our example into 1 second intervals and assume that the probability a packet arrives each second is $\lambda$ and the probability the server finishes servicing a packet each second is $\mu$. \\
@@ -79,3 +79,43 @@ Utilization of the system is $\rho = \frac{\lambda}{\mu}$ \\
 Average time that a packet spends in a buffer or being served$T = \frac{1}{\mu-\lambda}$ \\ 
 Average queueing time $T-\frac{1}{\mu}$\\
 Average number of packets  stored in a link's transmitter queue $L = \frac{\lambda}{\mu}$
+\subsubsection*{Little's Result}
+Little's Result is a metric helps relate the average number of packets, $L$, with the average arrival rate, $\lambda$, and  time, $W$, a packet spends in a system. 
+$$L = \lambda W$$
+ex. Suppose on average there are 1 billion users sending 10 MBytes of data per day on the Internet and each packet takes 0.4 seconds on the Internet. Then, $\lambda = 10^9 \frac{8*10^7 bits}{24 * 3600 sec}$ and $W = 0.4s$, and the average number of bits in transit $L = \lambda W$. \\ 
+ex. We can also use Little's Result in the following way. Suppose the average amount of data in transit per day on the Internet is 43 GBytes, and on average users send 10 MBytes of data per day with each packet taking 0.4 seconds. On average, how many users are using the Internet? So far we are given $W = 0.4 sec$, $L = 43 GBytes \approx 3.7*10^11 bits$, and $\lambda = \# users \times \frac{8*10^7 bits}{24 * 3600 sec}$. So using Little's Result we can solve for $\lambda = \frac{L}{W} \approx 9.25*10^11 bits$, then solve for $\# users = \frac{\lambda}{926 bps} \approx 9.99 * 10^8 \approx 1\ billion\ users$ 
+
+\section{Layers}
+The Internet is arranged into five main layers for modularity and design simplicity. 
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[height=0.24\textwidth]{fig2_4_layers}
+    \caption{Layers of Internet}
+    \label{fig:layers}
+\end{figure}
+\subsubsection*{Physical Layer}
+The physical delivery of bits across a medium. For example, transmitting a signal across a radio network. 
+\subsubsection*{Link Layer}
+Directs and interprets the signals transmitted into bits to deliver packets across links. 
+\subsubsection*{Network Layer}
+Uses the link layer to deliver packets across multiple links from source to destination.
+\subsubsection*{Transport Layer}
+Uses the end to end delivery of the network layer to transport packets and byte streams from a process in a source computer to one in a destination computer. 
+\subsubsection*{Application Layer}
+Applications that use the transport layer services.
+
+\section{Network Application Terminology}
+There are many different ways applications allow hosts to exchange information. 
+\subsubsection*{Client/Server}
+Web browsing uses this model. The user host is the client that connects to a server, like google.com. The client asks the server for files and the server transmits them. \\
+Server farms host collections of servers and have a system for balancing the load of requests. 
+\subsubsection*{Peer-to-Peer P2P}
+Stores files in user hosts instead of specialized servers. A user can request a file from a list of user hosts and the hosts can deliver different parts of the file in parallel. \subsubsection*{Cloud Computing}
+A user makes use of the computing service hosted by a collection of computers attached to a network. Users can lease services from a cloud computer provider instead of purchasing an application themselves. Some examples include Amazon AWS, Microsoft Azure, Salesforce, ...
+\subsubsection*{Content Distribution System}
+A set of servers at various points in a network that improve the delivery of information to users. One example is if a user requests a file from one server, the server may redirect the request to a different server that is closer to user (may be based on IP addresses).
+\subsubsection*{Multicast/Anycast}
+Delivers files or streams to a set of hosts that have subscribed to a multicast and the server sends them the information. 
+Anycast refers to the delivery of a file to any one of a set of hosts.
+\subsubsection*{Push/Pull}
+Hosts pull information from servers. Hosts push information to servers. 
